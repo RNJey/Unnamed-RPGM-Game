@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ba6eek7ebfo0t"]
+
+[node name="Floor1_Basement" type="Node2D" unique_id=1085048118]
+
+[node name="Enviroment" type="Node2D" parent="." unique_id=1416385483]
+
+[node name="FloorLayer" type="TileMapLayer" parent="Enviroment" unique_id=825458011]
+
+[node name="WallLayer" type="TileMapLayer" parent="Enviroment" unique_id=1403744165]
+
+[node name="Decorlayer" type="TileMapLayer" parent="Enviroment" unique_id=892761428]
+
+[node name="YSortObjects" type="Node2D" parent="." unique_id=482904450]
+y_sort_enabled = true
+
+[node name="Player" type="CharacterBody2D" parent="YSortObjects" unique_id=1155806402]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSortObjects/Player" unique_id=1951958238]
+
+[node name="Camera2D" type="Camera2D" parent="YSortObjects/Player" unique_id=423901196]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortObjects/Player" unique_id=139510588]
+
+[node name="Area2D" type="Area2D" parent="YSortObjects/Player" unique_id=134034066]
+
+[node name="NPC" type="Node2D" parent="YSortObjects" unique_id=1978975725]
+
+[node name="Enemies" type="Node2D" parent="YSortObjects" unique_id=629794723]
+
+[node name="Interactables" type="Node2D" parent="YSortObjects" unique_id=1251176707]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510707019]
+
+[node name="ExplorationHUD" type="Control" parent="CanvasLayer" unique_id=360279803]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BengkelQueryUI" type="Control" parent="CanvasLayer" unique_id=969523245]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShopUI" type="Control" parent="CanvasLayer" unique_id=1865160113]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
