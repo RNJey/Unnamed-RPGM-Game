@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bmkg1u80ph4ig"]
+
+[ext_resource type="Script" uid="uid://x1cvopvdidby" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[node name="Player" type="CharacterBody2D" unique_id=441134466]
+collision_layer = 2
+script = ExtResource("1_3vyb7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=230648353]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=420738479]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1551351564]
+
+[node name="SwordHitBox" type="Area2D" parent="." unique_id=925067729]
+position = Vector2(0, -3)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox" unique_id=347835780]
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=335520354]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=418385867]

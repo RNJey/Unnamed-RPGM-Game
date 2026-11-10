@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bjjyk8ss4qcgs"]
+
+[ext_resource type="Script" uid="uid://ba16al3csu5gi" path="res://scripts/main_door.gd" id="1_eb4o0"]
+
+[node name="Main_Door" type="StaticBody2D" unique_id=1579589820]
+collision_mask = 0
+script = ExtResource("1_eb4o0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=536086805]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1102496332]
+
+[node name="ExitZone" type="Area2D" parent="." unique_id=1237017089]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZone" unique_id=684894371]

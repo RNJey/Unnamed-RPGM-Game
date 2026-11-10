@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cxo5e0rexsvwy"]
+
+[ext_resource type="Script" uid="uid://crw63ty12sa7c" path="res://scripts/lever.gd" id="1_4kwec"]
+
+[node name="Lever" type="Area2D" unique_id=1450124603]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_4kwec")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1846391565]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1794424934]
