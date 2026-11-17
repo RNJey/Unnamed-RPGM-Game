@@ -60,3 +60,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=407225016]
+color = Color(0.21518224, 0.21518216, 0.21518219, 1)
