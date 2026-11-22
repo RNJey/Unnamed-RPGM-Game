@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bxgica646bs0s"]
+
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="1_g73kl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv8us"]
+atlas = ExtResource("1_g73kl")
+region = Rect2(64, 75, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyoba"]
+atlas = ExtResource("1_g73kl")
+region = Rect2(80, 75, 16, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv8us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyoba")
+}],
+"loop": 1,
+"name": &"lever",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx22e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+height = 24.0
+
+[node name="Lever" type="StaticBody2D" unique_id=1727285350]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=157000215]
+position = Vector2(312, -10)
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"lever"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1920619371]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=352830795]
+position = Vector2(312, -11)
+shape = SubResource("CapsuleShape2D_tx22e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=22994200]
+position = Vector2(312, -10)
+shape = SubResource("CapsuleShape2D_7khga")
