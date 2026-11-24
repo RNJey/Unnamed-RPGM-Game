@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://brbr4q7rf5an5" path="res://assets/tilesets/DampDungeons/Tiles/DungeonDecorations.png" id="3_xypgu"]
 [ext_resource type="PackedScene" uid="uid://bxgica646bs0s" path="res://scenes/interactables/lever.tscn" id="4_2x7or"]
 [ext_resource type="PackedScene" uid="uid://jlmh1dia5osi" path="res://scenes/interactables/main_door.tscn" id="5_tsf3r"]
+[ext_resource type="PackedScene" uid="uid://yycbxu5h0vmv" path="res://scenes/entities/goblin_ward.tscn" id="6_rm1kh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiplf"]
 texture = ExtResource("1_wfrpo")
@@ -1599,6 +1600,21 @@ position = Vector2(65, 97)
 
 [node name="Main_Door(Secret1)" parent="YSortObjects" unique_id=829128459 instance=ExtResource("5_tsf3r")]
 position = Vector2(664, -124)
+
+[node name="goblin_ward" parent="YSortObjects" unique_id=1557171390 instance=ExtResource("6_rm1kh")]
+position = Vector2(191, 221)
+
+[node name="goblin_ward2" parent="YSortObjects" unique_id=1138164903 instance=ExtResource("6_rm1kh")]
+position = Vector2(284, 96)
+
+[node name="goblin_ward3" parent="YSortObjects" unique_id=1712674766 instance=ExtResource("6_rm1kh")]
+position = Vector2(466, 317)
+
+[node name="goblin_ward4" parent="YSortObjects" unique_id=1554715512 instance=ExtResource("6_rm1kh")]
+position = Vector2(667, 181)
+
+[node name="goblin_ward5" parent="YSortObjects" unique_id=981279540 instance=ExtResource("6_rm1kh")]
+position = Vector2(627, 45)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510707019]
 

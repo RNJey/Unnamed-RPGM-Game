@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://crvvihf6nr4lf" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/Giant_Tree.png" id="7_22w10"]
 [ext_resource type="PackedScene" uid="uid://jlmh1dia5osi" path="res://scenes/interactables/main_door.tscn" id="7_bedoa"]
 [ext_resource type="Texture2D" uid="uid://cg8qxmiy20lh0" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/stone and bush.png" id="9_8m1aw"]
+[ext_resource type="PackedScene" uid="uid://d3b3074slxqnk" path="res://scenes/entities/mikael.tscn" id="11_oc4j2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiplf"]
 texture = ExtResource("1_e4a5l")
@@ -7331,6 +7332,9 @@ y_sort_enabled = true
 
 [node name="Main_Door" parent="YSortObjects" unique_id=1579589820 instance=ExtResource("7_bedoa")]
 position = Vector2(645, -57)
+
+[node name="mikael" parent="YSortObjects" unique_id=1557171390 instance=ExtResource("11_oc4j2")]
+position = Vector2(701, 287)
 
 [node name="Main_Door(Prev)" parent="YSortObjects" unique_id=2021789178 instance=ExtResource("7_bedoa")]
 position = Vector2(706, 490)

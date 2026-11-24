@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bk8vdgxpel306"]
+
+[ext_resource type="Texture2D" uid="uid://b0d6wj5dd8evm" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Player & Npc/npc.png" id="1_f23xt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7ril"]
+atlas = ExtResource("1_f23xt")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqjhj"]
+atlas = ExtResource("1_f23xt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqx7n"]
+atlas = ExtResource("1_f23xt")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7ril")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqjhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqx7n")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+radius = 7.0
+height = 24.0
+
+[node name="trader" type="CharacterBody2D" unique_id=1557171390]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=197549428]
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"idle"
+frame_progress = 0.87750995
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114340694]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_7khga")

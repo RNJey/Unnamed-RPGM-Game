@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ci8376a4qbeyf" path="res://assets/tilesets/RF_Catacombs_v1.0/decorative.png" id="5_ke3o0"]
 [ext_resource type="PackedScene" uid="uid://bxgica646bs0s" path="res://scenes/interactables/lever.tscn" id="6_twlsi"]
 [ext_resource type="PackedScene" uid="uid://jlmh1dia5osi" path="res://scenes/interactables/main_door.tscn" id="7_rrk2k"]
+[ext_resource type="PackedScene" uid="uid://db06r2nfsij4s" path="res://scenes/entities/skeleton_walker.tscn" id="8_b5ugd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiplf"]
 texture = ExtResource("2_b5ugd")
@@ -4815,6 +4816,30 @@ position = Vector2(849, 306)
 
 [node name="Main_Door(Secret2)" parent="YSortObjects" unique_id=640123900 instance=ExtResource("7_rrk2k")]
 position = Vector2(-29, 545)
+
+[node name="skeleton_walker" parent="YSortObjects" unique_id=1557171390 instance=ExtResource("8_b5ugd")]
+position = Vector2(333, 131)
+
+[node name="skeleton_walker2" parent="YSortObjects" unique_id=983108993 instance=ExtResource("8_b5ugd")]
+position = Vector2(535, 148)
+
+[node name="skeleton_walker3" parent="YSortObjects" unique_id=766250810 instance=ExtResource("8_b5ugd")]
+position = Vector2(614, 246)
+
+[node name="skeleton_walker4" parent="YSortObjects" unique_id=644245674 instance=ExtResource("8_b5ugd")]
+position = Vector2(541, 482)
+
+[node name="skeleton_walker5" parent="YSortObjects" unique_id=1982758812 instance=ExtResource("8_b5ugd")]
+position = Vector2(145, 531)
+
+[node name="skeleton_walker6" parent="YSortObjects" unique_id=865577946 instance=ExtResource("8_b5ugd")]
+position = Vector2(1087, 274)
+
+[node name="skeleton_walker7" parent="YSortObjects" unique_id=1396099747 instance=ExtResource("8_b5ugd")]
+position = Vector2(1475, 115)
+
+[node name="skeleton_walker8" parent="YSortObjects" unique_id=1823984080 instance=ExtResource("8_b5ugd")]
+position = Vector2(1734, 79)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510707019]
 

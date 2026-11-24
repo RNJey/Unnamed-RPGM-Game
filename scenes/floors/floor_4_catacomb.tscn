@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ci8376a4qbeyf" path="res://assets/tilesets/RF_Catacombs_v1.0/decorative.png" id="5_kafln"]
 [ext_resource type="PackedScene" uid="uid://bxgica646bs0s" path="res://scenes/interactables/lever.tscn" id="6_4kb2d"]
 [ext_resource type="PackedScene" uid="uid://jlmh1dia5osi" path="res://scenes/interactables/main_door.tscn" id="7_snee8"]
+[ext_resource type="PackedScene" uid="uid://db06r2nfsij4s" path="res://scenes/entities/skeleton_walker.tscn" id="8_bwfk6"]
+[ext_resource type="PackedScene" uid="uid://cdvkqbrrx6n8f" path="res://scenes/entities/cultist.tscn" id="9_pw10s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiplf"]
 texture = ExtResource("1_rc8l7")
@@ -4807,8 +4809,29 @@ position = Vector2(1085, 116)
 [node name="Main_Door" parent="YSortObjects" unique_id=1579589820 instance=ExtResource("7_snee8")]
 position = Vector2(-64, -78)
 
+[node name="skeleton_walker" parent="YSortObjects" unique_id=1557171390 instance=ExtResource("8_bwfk6")]
+position = Vector2(-64, 67)
+
+[node name="skeleton_walker2" parent="YSortObjects" unique_id=253658481 instance=ExtResource("8_bwfk6")]
+position = Vector2(105, 109)
+
+[node name="skeleton_walker3" parent="YSortObjects" unique_id=1096698544 instance=ExtResource("8_bwfk6")]
+position = Vector2(543, 112)
+
+[node name="skeleton_walker4" parent="YSortObjects" unique_id=796415489 instance=ExtResource("8_bwfk6")]
+position = Vector2(589, 225)
+
+[node name="skeleton_walker5" parent="YSortObjects" unique_id=1348874277 instance=ExtResource("8_bwfk6")]
+position = Vector2(781, 341)
+
 [node name="Main_Door(Prev)" parent="YSortObjects" unique_id=2021789178 instance=ExtResource("7_snee8")]
 position = Vector2(1664, 129)
+
+[node name="cultist" parent="YSortObjects" unique_id=1559634991 instance=ExtResource("9_pw10s")]
+position = Vector2(1522, 94)
+
+[node name="cultist2" parent="YSortObjects" unique_id=862744639 instance=ExtResource("9_pw10s")]
+position = Vector2(1089, 315)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1510707019]
 

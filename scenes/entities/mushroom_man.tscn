@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://cfu10bsko8bj1"]
+
+[ext_resource type="Texture2D" uid="uid://bwsaiv4ncal8c" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_Monsters2.png" id="1_wprsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3htj5"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(72, 128, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cojhm"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(96, 128, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mems"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(120, 128, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t2p3"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(72, 160, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3657"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(96, 160, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bflme"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(120, 160, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0slw"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(72, 192, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jra3g"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(96, 192, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ux2c"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(120, 192, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_int2n"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(72, 224, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlc78"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(96, 224, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqvrb"]
+atlas = ExtResource("1_wprsa")
+region = Rect2(120, 224, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3htj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cojhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mems")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t2p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3657")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bflme")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0slw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jra3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ux2c")
+}],
+"loop": 1,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_int2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlc78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqvrb")
+}],
+"loop": 1,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+radius = 7.0
+height = 24.0
+
+[node name="mushroom_man" type="CharacterBody2D" unique_id=1557171390]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=197549428]
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"walk_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114340694]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_7khga")

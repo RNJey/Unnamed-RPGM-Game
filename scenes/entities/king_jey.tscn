@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dscg11ox56aqu"]
+
+[ext_resource type="Texture2D" uid="uid://cu8shfynbbdpp" path="res://assets/sprites/Sprite_Pixel_Enam_Bingkai_Transparan-removebg-preview.png" id="1_kkaas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxnfr"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(0, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3das"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(144, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjnql"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(288, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av6ec"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(432, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj50p"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(576, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nm0i"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(720, 0, 144, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxnfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3das")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjnql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av6ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj50p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nm0i")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+radius = 8.0
+height = 42.0
+
+[node name="king_jey" type="CharacterBody2D" unique_id=1557171390]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=197549428]
+position = Vector2(4.09375, 9.609374)
+scale = Vector2(0.19314234, 0.1763238)
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"idle"
+frame_progress = 0.4883497
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114340694]
+position = Vector2(5, 11)
+shape = SubResource("CapsuleShape2D_7khga")
