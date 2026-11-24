@@ -10,18 +10,21 @@ config_version=5
 
 [application]
 
-config/name="Unnamed RPGM Game"
+config/name="SQL Vault: Escape the Database"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*uid://s2n6a67or4f2"
+AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="ignore"
 
 [input]
 
@@ -75,4 +78,6 @@ interact={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,0 +1,428 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/about.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/developer/Zacky.png" id="2_zacky"]
+[ext_resource type="Texture2D" path="res://assets/developer/Fajar.png" id="3_fajar"]
+[ext_resource type="Texture2D" path="res://assets/developer/Jidan.png" id="4_jidan"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.18, 0.22, 0.17, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.53, 0.4, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_photo"]
+bg_color = Color(0.11, 0.13, 0.1, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.85, 0.55, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.19, 0.41, 0.27, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.19, 0.41, 0.27, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.85, 0.55, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.24, 0.51, 0.34, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.95, 0.7, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.14, 0.31, 0.21, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.7, 0.45, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="About" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.1, 0.08, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 26
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 38
+text = "TENTANG"
+
+[node name="SubtitleLabel" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.69, 1)
+theme_override_font_sizes/font_size = 14
+text = "Proyek Akhir Workshop PPLG  ·  S1 Pendidikan Teknik Informatika  ·  Universitas Negeri Malang"
+
+[node name="Rule" type="ColorRect" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.45, 0.53, 0.4, 1)
+
+[node name="SectionLabel" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "TIM PENGEMBANG"
+
+[node name="TeamRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CardZacky" type="PanelContainer" parent="Margin/VBox/TeamRow"]
+custom_minimum_size = Vector2(0, 264)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardZacky"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Margin/VBox/TeamRow/CardZacky/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PhotoFrame" type="PanelContainer" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_photo")
+
+[node name="Photo" type="TextureRect" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox/PhotoFrame"]
+custom_minimum_size = Vector2(112, 112)
+layout_mode = 2
+texture_filter = 1
+texture = ExtResource("2_zacky")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 18
+text = "Muhammad Kharissah\nIbnu Zacky"
+horizontal_alignment = 1
+
+[node name="NimLabel" type="Label" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.69, 1)
+theme_override_font_sizes/font_size = 14
+text = "NIM 240533606333"
+horizontal_alignment = 1
+
+[node name="RolePill" type="PanelContainer" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox/RolePill"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 3
+
+[node name="RoleLabel" type="Label" parent="Margin/VBox/TeamRow/CardZacky/Pad/VBox/RolePill/Pad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.97, 0.73, 1)
+theme_override_font_sizes/font_size = 11
+text = "ARTISTIK"
+
+[node name="CardFajar" type="PanelContainer" parent="Margin/VBox/TeamRow"]
+custom_minimum_size = Vector2(0, 264)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardFajar"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Margin/VBox/TeamRow/CardFajar/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PhotoFrame" type="PanelContainer" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_photo")
+
+[node name="Photo" type="TextureRect" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox/PhotoFrame"]
+custom_minimum_size = Vector2(112, 112)
+layout_mode = 2
+texture_filter = 1
+texture = ExtResource("3_fajar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 18
+text = "Muhammad Fajar\nTri Mulyo"
+horizontal_alignment = 1
+
+[node name="NimLabel" type="Label" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.69, 1)
+theme_override_font_sizes/font_size = 14
+text = "NIM 240533607939"
+horizontal_alignment = 1
+
+[node name="RolePill" type="PanelContainer" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox/RolePill"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 3
+
+[node name="RoleLabel" type="Label" parent="Margin/VBox/TeamRow/CardFajar/Pad/VBox/RolePill/Pad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.97, 0.73, 1)
+theme_override_font_sizes/font_size = 11
+text = "PROGRAMMER"
+
+[node name="CardJidan" type="PanelContainer" parent="Margin/VBox/TeamRow"]
+custom_minimum_size = Vector2(0, 264)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardJidan"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Margin/VBox/TeamRow/CardJidan/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PhotoFrame" type="PanelContainer" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_photo")
+
+[node name="Photo" type="TextureRect" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox/PhotoFrame"]
+custom_minimum_size = Vector2(112, 112)
+layout_mode = 2
+texture_filter = 1
+texture = ExtResource("4_jidan")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 18
+text = "Jidan Syaputra\nLaut"
+horizontal_alignment = 1
+
+[node name="NimLabel" type="Label" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.69, 1)
+theme_override_font_sizes/font_size = 14
+text = "NIM 240533608823"
+horizontal_alignment = 1
+
+[node name="RolePill" type="PanelContainer" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox/RolePill"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 3
+
+[node name="RoleLabel" type="Label" parent="Margin/VBox/TeamRow/CardJidan/Pad/VBox/RolePill/Pad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.97, 0.73, 1)
+theme_override_font_sizes/font_size = 11
+text = "PROJECT + LEVEL MANAGER"
+
+[node name="SupportRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="CardAsisten" type="PanelContainer" parent="Margin/VBox/SupportRow"]
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/SupportRow/CardAsisten"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/VBox/SupportRow/CardAsisten/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RoleLabel" type="Label" parent="Margin/VBox/SupportRow/CardAsisten/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "ASISTEN PRAKTIKUM"
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/SupportRow/CardAsisten/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "Sulthan Widiasta Kurniawan"
+
+[node name="MailLabel" type="Label" parent="Margin/VBox/SupportRow/CardAsisten/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.77, 1)
+theme_override_font_sizes/font_size = 14
+text = "sulthan.widiasta.2405356@students.um.ac.id"
+
+[node name="CardDosen" type="PanelContainer" parent="Margin/VBox/SupportRow"]
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Pad" type="MarginContainer" parent="Margin/VBox/SupportRow/CardDosen"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin/VBox/SupportRow/CardDosen/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RoleLabel" type="Label" parent="Margin/VBox/SupportRow/CardDosen/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "DOSEN PENGAMPU"
+
+[node name="NameLabel" type="Label" parent="Margin/VBox/SupportRow/CardDosen/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "Harits Ar Rosyid, S.T., M.T., Ph.D"
+
+[node name="MailLabel" type="Label" parent="Margin/VBox/SupportRow/CardDosen/Pad/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.77, 1)
+theme_override_font_sizes/font_size = 14
+text = "harits.ar.ft@um.ac.id"
+
+[node name="Spacer" type="Control" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FooterRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CreditsLabel" type="Label" parent="Margin/VBox/FooterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.73, 0.77, 0.69, 1)
+theme_override_font_sizes/font_size = 12
+text = "Godot 4.7.2  ·  Aset: DampDungeons (Arex_V), RF Catacombs (Szadi Art), Kenney CC0 Audio  ·  v1.0"
+
+[node name="BackBtn" type="Button" parent="Margin/VBox/FooterRow"]
+custom_minimum_size = Vector2(172, 38)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.67, 0.97, 0.73, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "KEMBALI  [Esc]"

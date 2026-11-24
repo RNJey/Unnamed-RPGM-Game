@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cixdalfamh26i"]
 
-[ext_resource type="Texture2D" uid="uid://f20afun8o23w" path="res://assets/sprites/Sprite_Sheet_Idle_Pria_Pixel_Art-removebg-preview.png" id="1_d8xk8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Sprite_Sheet_Idle_Pria_Pixel_Art-removebg-preview.png" id="1_d8xk8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orupu"]
 atlas = ExtResource("1_d8xk8")

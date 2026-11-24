@@ -1,26 +1,51 @@
-[gd_scene format=3 uid="uid://bmkg1u80ph4ig"]
+[gd_scene load_steps=6 format=3 uid="uid://bmkg1u80ph4ig"]
 
-[ext_resource type="Script" uid="uid://x1cvopvdidby" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://x1cvopvdidby" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="SpriteFrames" path="res://resources/player_frames.tres" id="2_frames"]
 
-[node name="Player" type="CharacterBody2D" unique_id=441134466]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sword"]
+size = Vector2(18, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 14.0
+
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_3vyb7")
+collision_mask = 1
+script = ExtResource("1_player")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=230648353]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -21)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=420738479]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_body")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1551351564]
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
-[node name="SwordHitBox" type="Area2D" parent="." unique_id=925067729]
-position = Vector2(0, -3)
+[node name="SwordHitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox" unique_id=347835780]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+shape = SubResource("RectangleShape2D_sword")
+disabled = true
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=335520354]
+[node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=418385867]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")

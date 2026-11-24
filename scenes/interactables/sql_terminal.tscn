@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/sql_terminal.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="2_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unsolved"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 194, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_solved"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 222, 16, 34)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 10)
+
+[node name="SQLTerminal" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_script")
+solved_texture = SubResource("AtlasTexture_solved")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_unsolved")
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_interact")
+
+[node name="Body" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Status" type="Label" parent="."]
+visible = false
+texture_filter = 2
+offset_left = -240.0
+offset_top = -38.0
+offset_right = 240.0
+offset_bottom = -2.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "[E] BUKA TERMINAL"
+horizontal_alignment = 1

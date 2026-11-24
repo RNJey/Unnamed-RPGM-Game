@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://d3b3074slxqnk"]
+[gd_scene load_steps=12 format=3]
 
-[ext_resource type="Texture2D" uid="uid://lblsi5bfwslt" path="res://assets/sprites/Lembaran_Sprite_Pixel_Pria_Beranimasi-removebg-preview.png" id="1_7bsl3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Lembaran_Sprite_Pixel_Pria_Beranimasi-removebg-preview.png" id="1_7bsl3"]
+[ext_resource type="Script" path="res://scripts/npc_dialogue.gd" id="2_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klnpd"]
 atlas = ExtResource("1_7bsl3")
@@ -47,24 +48,73 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qelta")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 26.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
 radius = 8.0
-height = 42.0
+height = 24.0
 
-[node name="mikael" type="CharacterBody2D" unique_id=1557171390]
+[node name="mikael" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_script")
+npc_id = "mikael"
+auto_trigger_cutscene = true
+auto_trigger_radius = 95.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=197549428]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 position = Vector2(4.09375, 9.609374)
 scale = Vector2(0.19314234, 0.1763238)
 sprite_frames = SubResource("SpriteFrames_tx22e")
 animation = &"idle"
-frame_progress = 0.02984214
+autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114340694]
-position = Vector2(5, 11)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 10)
+shape = SubResource("CircleShape2D_interact")
+
+[node name="Body" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(4, 10)
 shape = SubResource("CapsuleShape2D_7khga")
+
+[node name="NameLabel" type="Label" parent="."]
+texture_filter = 2
+offset_left = -240.0
+offset_top = -22.0
+offset_right = 240.0
+offset_bottom = 14.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(1, 0.78, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Mikael"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="."]
+visible = false
+texture_filter = 2
+offset_left = -240.0
+offset_top = -34.0
+offset_right = 240.0
+offset_bottom = 2.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(0.98, 0.9, 0.42, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "[E] BICARA (+HADIAH)"
+horizontal_alignment = 1

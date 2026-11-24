@@ -1,0 +1,1133 @@
+{
+  "floors": {
+    "1": [
+      {
+        "lever_id": "1:Lever",
+        "floor": 1,
+        "category": "DDL",
+        "step_label": "STEP 1: DDL DASAR",
+        "title": "Terminal 1 — Buat Cetakan Kotak",
+        "question": "Buat tabel bernama 'kotak' dengan kolom 'ukuran' (VARCHAR) dan 'warna' (VARCHAR) agar cetakan objek terdaftar.",
+        "hint": "CREATE TABLE kotak (ukuran VARCHAR, warna VARCHAR);",
+        "expected_sql": "CREATE TABLE kotak (ukuran VARCHAR, warna VARCHAR);",
+        "expected_rows": [],
+        "schema": [
+          {
+            "table": "kotak (target)",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 50,
+          "crystals": 1
+        },
+        "terminal_cell": [
+          19,
+          2
+        ],
+        "target_item": {
+          "name": "Cetakan Kotak (Wadah DDL)",
+          "icon": "box"
+        },
+        "quick_tokens": [
+          "CREATE TABLE",
+          "kotak",
+          "(ukuran VARCHAR,",
+          "warna VARCHAR);"
+        ],
+        "initial_db_state": {
+          "tables": {},
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "table_exists",
+            "label": "Tabel 'kotak' berhasil dibuat",
+            "table": "kotak"
+          },
+          {
+            "type": "columns",
+            "label": "Kolom 'ukuran' & 'warna' tersedia",
+            "table": "kotak",
+            "columns": [
+              "ukuran",
+              "warna"
+            ]
+          },
+          {
+            "type": "column_type",
+            "label": "Kolom 'ukuran' bertipe VARCHAR",
+            "table": "kotak",
+            "column": "ukuran",
+            "value": "VARCHAR"
+          },
+          {
+            "type": "column_type",
+            "label": "Kolom 'warna' bertipe VARCHAR",
+            "table": "kotak",
+            "column": "warna",
+            "value": "VARCHAR"
+          }
+        ]
+      },
+      {
+        "lever_id": "1:Lever2",
+        "floor": 1,
+        "category": "DML",
+        "step_label": "STEP 1: DML INSERT",
+        "title": "Terminal 2 — Cetak Kotak Merah",
+        "question": "Masukkan 1 objek baru ke tabel 'kotak' dengan ukuran = 'besar' dan warna = 'merah'.",
+        "hint": "INSERT INTO kotak (ukuran, warna) VALUES ('besar', 'merah');",
+        "expected_sql": "INSERT INTO kotak (ukuran, warna) VALUES ('besar', 'merah');",
+        "expected_rows": [
+          {
+            "ukuran": "besar",
+            "warna": "merah"
+          }
+        ],
+        "schema": [
+          {
+            "table": "kotak",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 60,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          25,
+          13
+        ],
+        "target_item": {
+          "name": "Kotak Besar Merah",
+          "icon": "ruby"
+        },
+        "quick_tokens": [
+          "INSERT INTO",
+          "kotak (ukuran, warna)",
+          "VALUES",
+          "('besar', 'merah');"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "kotak": {
+              "columns": [
+                {
+                  "name": "ukuran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "warna",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": []
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "row",
+            "label": "Tercetak 1 kotak besar berwarna merah",
+            "table": "kotak",
+            "row": {
+              "ukuran": "besar",
+              "warna": "merah"
+            }
+          },
+          {
+            "type": "row_count",
+            "label": "Jumlah objek di tabel tepat 1",
+            "table": "kotak",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "2": [
+      {
+        "lever_id": "2:Lever",
+        "floor": 2,
+        "category": "DDL",
+        "step_label": "STEP 2: DDL ALTER",
+        "title": "Terminal 1 — Tambah Kolom Bahan",
+        "question": "Cetakan 'kotak' kekurangan atribut bahan. Tambahkan kolom 'bahan' bertipe VARCHAR ke tabel 'kotak'.",
+        "hint": "ALTER TABLE kotak ADD bahan VARCHAR;",
+        "expected_sql": "ALTER TABLE kotak ADD bahan VARCHAR;",
+        "expected_rows": [],
+        "schema": [
+          {
+            "table": "kotak",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 70,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          19,
+          2
+        ],
+        "target_item": {
+          "name": "Upgrade Struktur Kotak",
+          "icon": "tablet"
+        },
+        "quick_tokens": [
+          "ALTER TABLE",
+          "kotak",
+          "ADD",
+          "bahan VARCHAR;"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "kotak": {
+              "columns": [
+                {
+                  "name": "ukuran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "warna",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": []
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "columns",
+            "label": "Kolom 'bahan' ditambahkan",
+            "table": "kotak",
+            "columns": [
+              "ukuran",
+              "warna",
+              "bahan"
+            ]
+          },
+          {
+            "type": "column_type",
+            "label": "Kolom 'bahan' bertipe VARCHAR",
+            "table": "kotak",
+            "column": "bahan",
+            "value": "VARCHAR"
+          }
+        ]
+      },
+      {
+        "lever_id": "2:Lever2",
+        "floor": 2,
+        "category": "DML",
+        "step_label": "STEP 2: DML UPDATE",
+        "title": "Terminal 2 — Ubah Warna Cetakan",
+        "question": "Objek kotak besar salah tercetak hijau. Ubah kolom 'warna' menjadi 'biru' khusus untuk baris ukuran = 'besar'.",
+        "hint": "UPDATE kotak SET warna = 'biru' WHERE ukuran = 'besar';",
+        "expected_sql": "UPDATE kotak SET warna = 'biru' WHERE ukuran = 'besar';",
+        "expected_rows": [
+          {
+            "ukuran": "besar",
+            "warna": "biru"
+          },
+          {
+            "ukuran": "kecil",
+            "warna": "merah"
+          }
+        ],
+        "schema": [
+          {
+            "table": "kotak",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 80,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          30,
+          20
+        ],
+        "target_item": {
+          "name": "Kotak Besar Biru",
+          "icon": "diamond"
+        },
+        "quick_tokens": [
+          "UPDATE kotak",
+          "SET warna = 'biru'",
+          "WHERE",
+          "ukuran = 'besar';"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "kotak": {
+              "columns": [
+                {
+                  "name": "ukuran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "warna",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "ukuran": "besar",
+                  "warna": "hijau"
+                },
+                {
+                  "ukuran": "kecil",
+                  "warna": "merah"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "row",
+            "label": "Kotak besar menjadi warna 'biru'",
+            "table": "kotak",
+            "row": {
+              "ukuran": "besar",
+              "warna": "biru"
+            }
+          },
+          {
+            "type": "no_row",
+            "label": "Tidak ada kotak besar berwarna 'hijau'",
+            "table": "kotak",
+            "row": {
+              "ukuran": "besar",
+              "warna": "hijau"
+            }
+          },
+          {
+            "type": "row_count",
+            "label": "Jumlah baris tetap 2 (kotak kecil terjaga)",
+            "table": "kotak",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "lever_id": "2:Lever3",
+        "floor": 2,
+        "category": "DDL + DML",
+        "step_label": "STEP 2: CREATE + INSERT",
+        "title": "Terminal 3 — Cetak Tabung Besi Hijau",
+        "question": "Buat tabel 'tabung' (kolom ukuran, bahan, warna bertipe VARCHAR), lalu cetak 1 baris: ('sedang', 'besi', 'hijau').",
+        "hint": "CREATE TABLE tabung (ukuran VARCHAR, bahan VARCHAR, warna VARCHAR); INSERT INTO tabung VALUES ('sedang', 'besi', 'hijau');",
+        "expected_sql": "CREATE TABLE tabung (ukuran VARCHAR, bahan VARCHAR, warna VARCHAR); INSERT INTO tabung VALUES ('sedang', 'besi', 'hijau');",
+        "expected_rows": [
+          {
+            "ukuran": "sedang",
+            "bahan": "besi",
+            "warna": "hijau"
+          }
+        ],
+        "schema": [
+          {
+            "table": "tabung (target)",
+            "columns": [
+              "ukuran VARCHAR",
+              "bahan VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 90,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          41,
+          -3
+        ],
+        "target_item": {
+          "name": "Tabung Besi Hijau",
+          "icon": "emerald"
+        },
+        "quick_tokens": [
+          "CREATE TABLE tabung",
+          "(ukuran VARCHAR, bahan VARCHAR, warna VARCHAR);",
+          "INSERT INTO tabung",
+          "VALUES ('sedang', 'besi', 'hijau');"
+        ],
+        "initial_db_state": {
+          "tables": {},
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "table_exists",
+            "label": "Tabel 'tabung' dibuat",
+            "table": "tabung"
+          },
+          {
+            "type": "columns",
+            "label": "Kolom ukuran, bahan, warna lengkap",
+            "table": "tabung",
+            "columns": [
+              "ukuran",
+              "bahan",
+              "warna"
+            ]
+          },
+          {
+            "type": "row",
+            "label": "Tercetak tabung bahan 'besi' warna 'hijau'",
+            "table": "tabung",
+            "row": {
+              "ukuran": "sedang",
+              "bahan": "besi",
+              "warna": "hijau"
+            }
+          }
+        ]
+      }
+    ],
+    "3": [
+      {
+        "lever_id": "3:Lever",
+        "floor": 3,
+        "category": "DML",
+        "step_label": "STEP 3: DML DELETE",
+        "title": "Terminal 1 — Bersihkan Data Rusak",
+        "question": "Ada baris rusak yang menghambat mesin. Hapus semua baris tabel 'arsip' yang memiliki status = 'rusak'.",
+        "hint": "DELETE FROM arsip WHERE status = 'rusak';",
+        "expected_sql": "DELETE FROM arsip WHERE status = 'rusak';",
+        "expected_rows": [
+          {
+            "kode": "A2",
+            "status": "valid"
+          }
+        ],
+        "schema": [
+          {
+            "table": "arsip",
+            "columns": [
+              "kode VARCHAR",
+              "status VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 90,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          2,
+          35
+        ],
+        "target_item": {
+          "name": "Arsip Data Valid",
+          "icon": "coin"
+        },
+        "quick_tokens": [
+          "DELETE FROM arsip",
+          "WHERE",
+          "status = 'rusak';"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "arsip": {
+              "columns": [
+                {
+                  "name": "kode",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "status",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "kode": "A1",
+                  "status": "rusak"
+                },
+                {
+                  "kode": "A2",
+                  "status": "valid"
+                },
+                {
+                  "kode": "A3",
+                  "status": "rusak"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "no_row",
+            "label": "Semua baris berstatus 'rusak' terhapus",
+            "table": "arsip",
+            "row": {
+              "status": "rusak"
+            }
+          },
+          {
+            "type": "row_count",
+            "label": "Tersisa tepat 1 baris valid (A2)",
+            "table": "arsip",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "lever_id": "3:Lever2",
+        "floor": 3,
+        "category": "DML",
+        "step_label": "STEP 3: SELECT WHERE",
+        "title": "Terminal 2 — Pindai Objek Merah",
+        "question": "Tampilkan hanya kolom 'ukuran' dari tabel 'kotak' untuk semua baris yang memiliki warna = 'merah'.",
+        "hint": "SELECT ukuran FROM kotak WHERE warna = 'merah';",
+        "expected_sql": "SELECT ukuran FROM kotak WHERE warna = 'merah';",
+        "expected_rows": [
+          {
+            "ukuran": "besar"
+          },
+          {
+            "ukuran": "sedang"
+          }
+        ],
+        "schema": [
+          {
+            "table": "kotak",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 100,
+          "crystals": 2
+        },
+        "terminal_cell": [
+          37,
+          16
+        ],
+        "target_item": {
+          "name": "Pemindaian Kotak Merah",
+          "icon": "flask"
+        },
+        "quick_tokens": [
+          "SELECT ukuran",
+          "FROM kotak",
+          "WHERE",
+          "warna = 'merah';"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "kotak": {
+              "columns": [
+                {
+                  "name": "ukuran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "warna",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "ukuran": "besar",
+                  "warna": "merah"
+                },
+                {
+                  "ukuran": "kecil",
+                  "warna": "biru"
+                },
+                {
+                  "ukuran": "sedang",
+                  "warna": "merah"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "select_result",
+            "label": "Hasil query menampilkan ukuran besar & sedang",
+            "columns": [
+              "ukuran"
+            ],
+            "rows": [
+              {
+                "ukuran": "besar"
+              },
+              {
+                "ukuran": "sedang"
+              }
+            ],
+            "order_matters": false
+          }
+        ]
+      },
+      {
+        "lever_id": "3:Lever3",
+        "floor": 3,
+        "category": "DDL + DML",
+        "step_label": "STEP 3: ALTER + UPDATE",
+        "title": "Terminal 3 — Perbaiki Cetakan Buku",
+        "question": "Tambahkan kolom 'judul' (VARCHAR) ke tabel 'buku', lalu ubah 'stok' menjadi 5 untuk baris kode = 'B1'.",
+        "hint": "ALTER TABLE buku ADD judul VARCHAR; UPDATE buku SET stok = 5 WHERE kode = 'B1';",
+        "expected_sql": "ALTER TABLE buku ADD judul VARCHAR; UPDATE buku SET stok = 5 WHERE kode = 'B1';",
+        "expected_rows": [
+          {
+            "kode": "B1",
+            "stok": 5,
+            "judul": null
+          }
+        ],
+        "schema": [
+          {
+            "table": "buku",
+            "columns": [
+              "kode VARCHAR",
+              "stok INT"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 110,
+          "crystals": 3
+        },
+        "terminal_cell": [
+          89,
+          8
+        ],
+        "target_item": {
+          "name": "Katalog Buku B1",
+          "icon": "tablet"
+        },
+        "quick_tokens": [
+          "ALTER TABLE buku ADD judul VARCHAR;",
+          "UPDATE buku",
+          "SET stok = 5",
+          "WHERE kode = 'B1';"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "buku": {
+              "columns": [
+                {
+                  "name": "kode",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "stok",
+                  "type": "INT"
+                }
+              ],
+              "rows": [
+                {
+                  "kode": "B1",
+                  "stok": 0
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "columns",
+            "label": "Kolom 'judul' ditambahkan ke tabel buku",
+            "table": "buku",
+            "columns": [
+              "kode",
+              "stok",
+              "judul"
+            ]
+          },
+          {
+            "type": "row",
+            "label": "Stok buku kode 'B1' menjadi 5",
+            "table": "buku",
+            "row": {
+              "kode": "B1",
+              "stok": 5
+            }
+          }
+        ]
+      }
+    ],
+    "4": [
+      {
+        "lever_id": "4:Lever",
+        "floor": 4,
+        "category": "DML",
+        "step_label": "STEP 4: DML UPDATE",
+        "title": "Terminal 1 — Selaraskan Log Akses",
+        "question": "Log keamanan masih mencatat kode 'MC' sebagai 'tamu'. Ubah 'akses' menjadi 'pemain' pada tabel 'log_akses' untuk kode = 'MC'.",
+        "hint": "UPDATE log_akses SET akses = 'pemain' WHERE kode = 'MC';",
+        "expected_sql": "UPDATE log_akses SET akses = 'pemain' WHERE kode = 'MC';",
+        "expected_rows": [
+          {
+            "kode": "MC",
+            "akses": "pemain"
+          },
+          {
+            "kode": "R2",
+            "akses": "penjaga"
+          }
+        ],
+        "schema": [
+          {
+            "table": "log_akses",
+            "columns": [
+              "kode VARCHAR",
+              "akses VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 110,
+          "crystals": 3
+        },
+        "terminal_cell": [
+          13,
+          9
+        ],
+        "target_item": {
+          "name": "Izin Log Akses MC",
+          "icon": "key"
+        },
+        "quick_tokens": [
+          "UPDATE log_akses",
+          "SET akses = 'pemain'",
+          "WHERE",
+          "kode = 'MC';"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "log_akses": {
+              "columns": [
+                {
+                  "name": "kode",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "akses",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "kode": "MC",
+                  "akses": "tamu"
+                },
+                {
+                  "kode": "R2",
+                  "akses": "penjaga"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "row",
+            "label": "Kode 'MC' kini berakses 'pemain'",
+            "table": "log_akses",
+            "row": {
+              "kode": "MC",
+              "akses": "pemain"
+            }
+          },
+          {
+            "type": "no_row",
+            "label": "Tidak ada akses 'tamu' tersisa",
+            "table": "log_akses",
+            "row": {
+              "kode": "MC",
+              "akses": "tamu"
+            }
+          }
+        ]
+      },
+      {
+        "lever_id": "4:Lever2",
+        "floor": 4,
+        "category": "DML",
+        "step_label": "STEP 4: SELECT ORDER BY",
+        "title": "Terminal 2 — Pindai Anggota Aktif",
+        "question": "Tampilkan kolom 'nama' dan 'peran' dari tabel 'anggota' dengan status = 'aktif', urutkan berdasarkan 'nama' ASC.",
+        "hint": "SELECT nama, peran FROM anggota WHERE status = 'aktif' ORDER BY nama ASC;",
+        "expected_sql": "SELECT nama, peran FROM anggota WHERE status = 'aktif' ORDER BY nama ASC;",
+        "expected_rows": [
+          {
+            "nama": "Fajar",
+            "peran": "programmer"
+          },
+          {
+            "nama": "Jidan",
+            "peran": "manager"
+          }
+        ],
+        "schema": [
+          {
+            "table": "anggota",
+            "columns": [
+              "nama VARCHAR",
+              "peran VARCHAR",
+              "status VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 120,
+          "crystals": 3
+        },
+        "terminal_cell": [
+          31,
+          19
+        ],
+        "target_item": {
+          "name": "Daftar Anggota Aktif",
+          "icon": "sword"
+        },
+        "quick_tokens": [
+          "SELECT nama, peran",
+          "FROM anggota",
+          "WHERE status = 'aktif'",
+          "ORDER BY nama ASC;"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "anggota": {
+              "columns": [
+                {
+                  "name": "nama",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "peran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "status",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "nama": "Jidan",
+                  "peran": "manager",
+                  "status": "aktif"
+                },
+                {
+                  "nama": "Zacky",
+                  "peran": "artis",
+                  "status": "nonaktif"
+                },
+                {
+                  "nama": "Fajar",
+                  "peran": "programmer",
+                  "status": "aktif"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "select_result",
+            "label": "Menampilkan Fajar lalu Jidan terurut ASC",
+            "columns": [
+              "nama",
+              "peran"
+            ],
+            "rows": [
+              {
+                "nama": "Fajar",
+                "peran": "programmer"
+              },
+              {
+                "nama": "Jidan",
+                "peran": "manager"
+              }
+            ],
+            "order_matters": true
+          }
+        ]
+      },
+      {
+        "lever_id": "4:Lever3",
+        "floor": 4,
+        "category": "DCL",
+        "step_label": "STEP 4: DCL REVOKE + GRANT",
+        "title": "Terminal 3 — Rebut Hak Akses Gerbang",
+        "question": "Cabut semua izin (ALL) pada tabel 'tabung' dari 'boss_penjaga', lalu berikan hak INSERT dan SELECT pada 'tabung' kepada 'pemain'.",
+        "hint": "REVOKE ALL ON tabung FROM boss_penjaga; GRANT INSERT, SELECT ON tabung TO pemain;",
+        "expected_sql": "REVOKE ALL ON tabung FROM boss_penjaga; GRANT INSERT, SELECT ON tabung TO pemain;",
+        "expected_rows": [],
+        "schema": [
+          {
+            "table": "tabung",
+            "columns": [
+              "ukuran VARCHAR",
+              "warna VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 150,
+          "crystals": 4
+        },
+        "terminal_cell": [
+          89,
+          8
+        ],
+        "target_item": {
+          "name": "Kunci Hak Akses Gerbang",
+          "icon": "key"
+        },
+        "quick_tokens": [
+          "REVOKE ALL ON tabung",
+          "FROM boss_penjaga;",
+          "GRANT INSERT, SELECT",
+          "ON tabung TO pemain;"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "tabung": {
+              "columns": [
+                {
+                  "name": "ukuran",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "warna",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": []
+            }
+          },
+          "permissions": {
+            "boss_penjaga": {
+              "tabung": [
+                "ALL"
+              ]
+            },
+            "pemain": {
+              "tabung": []
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "no_permissions",
+            "label": "Hak akses 'boss_penjaga' pada tabung dicabut",
+            "user": "boss_penjaga",
+            "table": "tabung",
+            "privs": [
+              "ALL"
+            ]
+          },
+          {
+            "type": "permissions",
+            "label": "Pemain memiliki hak INSERT & SELECT pada tabung",
+            "user": "pemain",
+            "table": "tabung",
+            "privs": [
+              "INSERT",
+              "SELECT"
+            ]
+          }
+        ]
+      }
+    ],
+    "5": [
+      {
+        "lever_id": "5:Final",
+        "floor": 5,
+        "category": "DML",
+        "step_label": "STEP 5: SELECT QUERY",
+        "title": "Terminal Akhir — Verifikasi Gerbang",
+        "question": "Tampilkan kode dan nama dari tabel 'gerbang_utama' yang berstatus = 'TERBUKA' urut kode ASC dengan batas 1 baris.",
+        "hint": "SELECT kode, nama FROM gerbang_utama WHERE status = 'TERBUKA' ORDER BY kode ASC LIMIT 1;",
+        "expected_sql": "SELECT kode, nama FROM gerbang_utama WHERE status = 'TERBUKA' ORDER BY kode ASC LIMIT 1;",
+        "expected_rows": [
+          {
+            "kode": "G0",
+            "nama": "Gerbang Keluar Ground 0"
+          }
+        ],
+        "schema": [
+          {
+            "table": "gerbang_utama",
+            "columns": [
+              "kode VARCHAR",
+              "nama VARCHAR",
+              "status VARCHAR"
+            ]
+          }
+        ],
+        "reward": {
+          "xp": 200,
+          "crystals": 5
+        },
+        "terminal_cell": [
+          40,
+          28
+        ],
+        "target_item": {
+          "name": "Kunci Ground 0",
+          "icon": "diamond"
+        },
+        "quick_tokens": [
+          "SELECT kode, nama",
+          "FROM gerbang_utama",
+          "WHERE status = 'TERBUKA'",
+          "ORDER BY kode ASC LIMIT 1;"
+        ],
+        "initial_db_state": {
+          "tables": {
+            "gerbang_utama": {
+              "columns": [
+                {
+                  "name": "kode",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "nama",
+                  "type": "VARCHAR"
+                },
+                {
+                  "name": "status",
+                  "type": "VARCHAR"
+                }
+              ],
+              "rows": [
+                {
+                  "kode": "G1",
+                  "nama": "Gerbang Cadangan",
+                  "status": "TERKUNCI"
+                },
+                {
+                  "kode": "G0",
+                  "nama": "Gerbang Keluar Ground 0",
+                  "status": "TERBUKA"
+                }
+              ]
+            }
+          },
+          "permissions": {
+            "pemain": {
+              "*": [
+                "ALL"
+              ]
+            }
+          }
+        },
+        "target_conditions": [
+          {
+            "type": "select_result",
+            "label": "Gerbang G0 terdeteksi TERBUKA",
+            "columns": [
+              "kode",
+              "nama"
+            ],
+            "rows": [
+              {
+                "kode": "G0",
+                "nama": "Gerbang Keluar Ground 0"
+              }
+            ],
+            "order_matters": true
+          }
+        ]
+      }
+    ]
+  }
+}
