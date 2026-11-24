@@ -1,10 +1,40 @@
 [gd_scene format=3 uid="uid://jlmh1dia5osi"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx22e"]
+[ext_resource type="Script" uid="uid://ba16al3csu5gi" path="res://scripts/main_door.gd" id="1_door"]
 
-[node name="main_door" type="Node2D" unique_id=2021789178]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_interact"]
+size = Vector2(36, 36)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1684084224]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_block"]
+size = Vector2(64, 80)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1463327724]
-shape = SubResource("CapsuleShape2D_tx22e")
+[node name="Main_Door" type="Area2D" unique_id=516557383]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_door")
+
+[node name="InteractShape" type="CollisionShape2D" parent="." unique_id=1280342943]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_interact")
+
+[node name="Status" type="Label" parent="." unique_id=387770433]
+texture_filter = 2
+offset_left = -240.0
+offset_top = -34.0
+offset_right = 240.0
+offset_bottom = 2.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(1, 0.55, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "PINTU 0/2 TUAS"
+horizontal_alignment = 1
+
+[node name="Block" type="StaticBody2D" parent="." unique_id=162599453]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block" unique_id=445723071]
+position = Vector2(0, -54)
+shape = SubResource("RectangleShape2D_block")

@@ -1,0 +1,480 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/bengkel_query_ui.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="2_dobj"]
+[ext_resource type="Texture2D" uid="uid://1vq2fnvxi0v0" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/Items.png" id="3_items"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.23, 0.28, 0.21, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.62, 0.7, 0.54, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.16, 0.19, 0.14, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.53, 0.4, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.19, 0.41, 0.27, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.85, 0.55, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inset"]
+bg_color = Color(0.11, 0.13, 0.1, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.42, 0.32, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crystal"]
+atlas = ExtResource("2_dobj")
+region = Rect2(0, 222, 16, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_energy"]
+atlas = ExtResource("3_items")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hint"]
+atlas = ExtResource("3_items")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp"]
+atlas = ExtResource("3_items")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syn"]
+atlas = ExtResource("3_items")
+region = Rect2(0, 0, 16, 16)
+
+[node name="BengkelQueryUI" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modal" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(920, 510)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Center/Modal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderPanel" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CrystalIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_crystal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CatPill" type="PanelContainer" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="CatLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow/CatPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 1, 0.88, 1)
+theme_override_font_sizes/font_size = 12
+text = "DDL"
+
+[node name="TitleLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 15
+text = "Terminal 1"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnergyIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_energy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EnergyLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Energi: 10/10"
+
+[node name="HintIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_hint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HintCountLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 13
+text = "Hint: 0"
+
+[node name="CloseBtn" type="Button" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TUTUP [Esc]"
+
+[node name="BodySplit" type="HBoxContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="LeftCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit"]
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MissionCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="MMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="MVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TargetRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox/TargetRow"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="TargetIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox/TargetRow/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TargetTextCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox/TargetRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="StepLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox/TargetRow/TargetTextCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "STEP 1"
+
+[node name="TargetNameLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox/TargetRow/TargetTextCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "Target Objek"
+
+[node name="QuestionLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/MissionCard/MMargin/MVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.92, 0.94, 0.9, 1)
+theme_override_font_sizes/font_size = 13
+text = "Deskripsi misi SQL..."
+autowrap_mode = 3
+
+[node name="SchemaCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="SMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/SchemaCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="SVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/SchemaCard/SMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SchemaHeader" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/SchemaCard/SMargin/SVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 12
+text = "SKEMA & ISI DATABASE (DDL / DCL)"
+
+[node name="SchemaText" type="RichTextLabel" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/SchemaCard/SMargin/SVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+
+[node name="RewardCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="RMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="RVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RewardRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="XPIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox/RewardRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_xp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="XPRewardLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox/RewardRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 12
+text = "+50 XP"
+
+[node name="CrystalIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox/RewardRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_syn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CrystalRewardLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox/RewardRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "+1 Kristal"
+
+[node name="HintBox" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="HintTextLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/LeftCol/RewardCard/RMargin/RVBox/HintBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Petunjuk terkunci."
+autowrap_mode = 3
+
+[node name="RightCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="TokenBar" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Tok1" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/TokenBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "SELECT"
+
+[node name="Tok2" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/TokenBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "FROM"
+
+[node name="Tok3" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/TokenBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "WHERE"
+
+[node name="Tok4" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/TokenBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "ORDER BY"
+
+[node name="EditorCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="EMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="EVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EditorHeader" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 12
+text = "EDITOR QUERY SQL:"
+
+[node name="QueryEdit" type="TextEdit" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_inset")
+placeholder_text = "Ketik query SQL di sini atau klik bantuan di atas..."
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RunBtn" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "RUN QUERY (-1 Energi)"
+
+[node name="HintBtn" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BUKA 1 KARTU (-1)"
+
+[node name="ResetBtn" type="Button" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/EditorCard/EMargin/EVBox/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "RESET"
+
+[node name="ResultCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="ResMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ResVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ResHeader" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin/ResVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 12
+text = "HASIL EKSEKUSI & CEK SYARAT:"
+
+[node name="ResultText" type="RichTextLabel" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin/ResVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+
+[node name="StatusBanner" type="PanelContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin/ResVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="StatusMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin/ResVBox/StatusBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="StatusLabel" type="Label" parent="Center/Modal/Margin/VBox/BodySplit/RightCol/ResultCard/ResMargin/ResVBox/StatusBanner/StatusMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Siap menerima perintah SQL."
+autowrap_mode = 3

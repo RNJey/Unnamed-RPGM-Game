@@ -1,0 +1,532 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="2_dobj"]
+[ext_resource type="Texture2D" uid="uid://1vq2fnvxi0v0" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/Items.png" id="3_items"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_modal.tscn" id="4_settings"]
+[ext_resource type="PackedScene" path="res://scenes/ui/achievements_modal.tscn" id="5_achievements"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.24, 0.29, 0.22, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.62, 0.7, 0.54, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.18, 0.22, 0.17, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.53, 0.4, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inset"]
+bg_color = Color(0.11, 0.13, 0.1, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.42, 0.32, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.19, 0.41, 0.27, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.85, 0.55, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crystal"]
+atlas = ExtResource("2_dobj")
+region = Rect2(0, 222, 16, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sword"]
+atlas = ExtResource("3_items")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lever"]
+atlas = ExtResource("2_dobj")
+region = Rect2(80, 75, 16, 25)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.1, 0.08, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modal" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(580, 465)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="Center/Modal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="HeroCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="HMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/HeroCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="HRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/HeroCard/HMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="CrystalIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(36, 56)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_crystal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Badge" type="PanelContainer" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow/TitleCol"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="BadgeLabel" type="Label" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow/TitleCol/Badge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 1, 0.88, 1)
+theme_override_font_sizes/font_size = 11
+text = "TOP-DOWN EDUCATIONAL SQL RPG"
+
+[node name="Title" type="Label" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow/TitleCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 21
+text = "SQL VAULT: ESCAPE THE DATABASE"
+
+[node name="Subtitle" type="Label" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow/TitleCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Pecahkan misi DDL, DML, DCL & SELECT untuk membuka pintu vault."
+
+[node name="SaveInfoLabel" type="Label" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow/TitleCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.96, 0.65, 1)
+theme_override_font_sizes/font_size = 12
+text = "Belum ada save tersimpan."
+
+[node name="SwordIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeroCard/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_sword")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuButtons" type="VBoxContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ContinueBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "LANJUTKAN"
+
+[node name="NewGameBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "MULAI BARU (Reset Progres)"
+
+[node name="LevelSelectBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "PILIH LANTAI (Level Select)"
+
+[node name="AchievementsBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "PENCAPAIAN (Achievements)"
+
+[node name="BottomRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/MenuButtons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SettingsBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons/BottomRow"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "PENGATURAN"
+
+[node name="AboutBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons/BottomRow"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "TENTANG"
+
+[node name="QuitBtn" type="Button" parent="Center/Modal/Margin/VBox/MenuButtons/BottomRow"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "KELUAR"
+
+[node name="ControlsHint" type="Label" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.74, 0.66, 1)
+theme_override_font_sizes/font_size = 11
+text = "Kontrol: WASD Jalan · J / Klik Serang · E Interaksi · Esc Jeda"
+horizontal_alignment = 1
+
+[node name="LevelSelectOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="LevelSelectOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.03, 0.8)
+
+[node name="Center" type="CenterContainer" parent="LevelSelectOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="LevelSelectOverlay/Center"]
+custom_minimum_size = Vector2(620, 420)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 16
+text = "PILIH LANTAI DUNGEON"
+
+[node name="BackBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/HeaderRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "KEMBALI [Esc]"
+
+[node name="RowsBox" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Floor1Row" type="PanelContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 1"
+
+[node name="Desc" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "DDL"
+
+[node name="EnterBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor1Row/Margin/HRow"]
+custom_minimum_size = Vector2(105, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "MASUK ->"
+
+[node name="Floor2Row" type="PanelContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 2"
+
+[node name="Desc" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "DML"
+
+[node name="EnterBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor2Row/Margin/HRow"]
+custom_minimum_size = Vector2(105, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TERKUNCI"
+
+[node name="Floor3Row" type="PanelContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 3"
+
+[node name="Desc" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "WHERE"
+
+[node name="EnterBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor3Row/Margin/HRow"]
+custom_minimum_size = Vector2(105, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TERKUNCI"
+
+[node name="Floor4Row" type="PanelContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 4"
+
+[node name="Desc" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "DCL"
+
+[node name="EnterBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor4Row/Margin/HRow"]
+custom_minimum_size = Vector2(105, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TERKUNCI"
+
+[node name="Floor5Row" type="PanelContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 5"
+
+[node name="Desc" type="Label" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin/HRow/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.8, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "Boss"
+
+[node name="EnterBtn" type="Button" parent="LevelSelectOverlay/Center/Panel/Margin/VBox/RowsBox/Floor5Row/Margin/HRow"]
+custom_minimum_size = Vector2(105, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TERKUNCI"
+
+[node name="SettingsModal" parent="." instance=ExtResource("4_settings")]
+visible = false
+
+[node name="AchievementsModal" parent="." instance=ExtResource("5_achievements")]
+visible = false

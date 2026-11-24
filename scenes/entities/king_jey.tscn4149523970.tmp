@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dsud7rin06ct5"]
+
+[ext_resource type="Texture2D" uid="uid://djtcmb1m6518x" path="res://assets/sprites/Sprite_Pixel_Enam_Bingkai_Transparan-removebg-preview.png" id="1_kkaas"]
+[ext_resource type="Script" uid="uid://d3tocpdxkt01e" path="res://scenes/entities/king_jey.gd" id="1_vxnfr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxnfr"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(0, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3das"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(144, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjnql"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(288, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av6ec"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(432, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj50p"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(576, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nm0i"]
+atlas = ExtResource("1_kkaas")
+region = Rect2(720, 0, 144, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxnfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3das")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjnql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av6ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj50p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nm0i")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+radius = 8.0
+height = 24.0
+
+[node name="king_jey" type="CharacterBody2D" unique_id=633927115]
+collision_mask = 0
+script = ExtResource("1_vxnfr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1475889705]
+texture_filter = 1
+position = Vector2(4.09375, 9.609374)
+scale = Vector2(0.19314234, 0.1763238)
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2094257318]
+position = Vector2(4, 10)
+shape = SubResource("CapsuleShape2D_7khga")
+
+[node name="NameLabel" type="Label" parent="." unique_id=1812903796]
+texture_filter = 2
+offset_left = -240.0
+offset_top = -22.0
+offset_right = 240.0
+offset_bottom = 14.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "King Jey"
+horizontal_alignment = 1

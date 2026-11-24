@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dlniqiv00pdru"]
+
+[ext_resource type="Texture2D" uid="uid://dmhn5jxq37yio" path="res://assets/sprites/Lembaran_Sprite_Pixel_Pria_Beranimasi-removebg-preview.png" id="1_7bsl3"]
+[ext_resource type="Script" uid="uid://d0t8b1y45qgr0" path="res://scripts/mikael.gd" id="1_klnpd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klnpd"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(0, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3ixf"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(144, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snq7k"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(288, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6jql"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(432, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk7rn"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(576, 0, 144, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qelta"]
+atlas = ExtResource("1_7bsl3")
+region = Rect2(720, 0, 144, 288)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klnpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3ixf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snq7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6jql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk7rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qelta")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx22e"]
+
+[node name="mikael" type="CharacterBody2D" unique_id=2095627799]
+collision_mask = 0
+script = ExtResource("1_klnpd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=518137974]
+texture_filter = 1
+position = Vector2(4.09375, 9.609374)
+scale = Vector2(0.19314234, 0.1763238)
+sprite_frames = SubResource("SpriteFrames_tx22e")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749697149]
+position = Vector2(4, 10)
+shape = SubResource("CapsuleShape2D_7khga")
+
+[node name="NameLabel" type="Label" parent="." unique_id=62406252]
+texture_filter = 2
+offset_left = -240.0
+offset_top = -22.0
+offset_right = 240.0
+offset_bottom = 14.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(1, 0.78, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Mikael"
+horizontal_alignment = 1
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1587764355]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1926960612]
+position = Vector2(7, 26)
+shape = SubResource("RectangleShape2D_tx22e")

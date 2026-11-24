@@ -1,0 +1,334 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_modal.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.24, 0.29, 0.22, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.62, 0.7, 0.54, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.18, 0.22, 0.17, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.53, 0.4, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.19, 0.41, 0.27, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.85, 0.55, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="SettingsModal" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.03, 0.76)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modal" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(640, 470)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Center/Modal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/HeaderCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/HeaderCard/HMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Pill" type="PanelContainer" parent="Center/Modal/Margin/VBox/HeaderCard/HMargin/HRow"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="PillLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderCard/HMargin/HRow/Pill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 1, 0.88, 1)
+theme_override_font_sizes/font_size = 11
+text = "PENGATURAN"
+
+[node name="Title" type="Label" parent="Center/Modal/Margin/VBox/HeaderCard/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 15
+text = "Audio, Musik Dungeon & Layar"
+
+[node name="AudioCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="AMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/AudioCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="AVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/AudioCard/AMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MasterRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/MasterRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Volume Master"
+
+[node name="MasterSlider" type="HSlider" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/MasterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100.0
+step = 5.0
+value = 85.0
+
+[node name="MasterVal" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/MasterRow"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "85%"
+horizontal_alignment = 2
+
+[node name="BgmRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/BgmRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Volume Musik (BGM)"
+
+[node name="BgmSlider" type="HSlider" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/BgmRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100.0
+step = 5.0
+value = 65.0
+
+[node name="BgmVal" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/BgmRow"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "65%"
+horizontal_alignment = 2
+
+[node name="SfxRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/SfxRow"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Volume Efek (SFX)"
+
+[node name="SfxSlider" type="HSlider" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/SfxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 100.0
+step = 5.0
+value = 80.0
+
+[node name="SfxVal" type="Label" parent="Center/Modal/Margin/VBox/AudioCard/AMargin/AVBox/SfxRow"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "80%"
+horizontal_alignment = 2
+
+[node name="BgmCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="BMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BgmCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="BVBox" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BgmCard/BMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Center/Modal/Margin/VBox/BgmCard/BMargin/BVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Pilih Musik Latar Dungeon (CC0)"
+
+[node name="TrackRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BgmCard/BMargin/BVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Opt5Btn" type="Button" parent="Center/Modal/Margin/VBox/BgmCard/BMargin/BVBox/TrackRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "[*] Opt 5: Dungeon Ambience (Default)"
+
+[node name="Opt3Btn" type="Button" parent="Center/Modal/Margin/VBox/BgmCard/BMargin/BVBox/TrackRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "Opt 3: Cave Theme"
+
+[node name="BaseBtn" type="Button" parent="Center/Modal/Margin/VBox/BgmCard/BMargin/BVBox/TrackRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "Loopable Ambience"
+
+[node name="DisplayCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="DMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/DisplayCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="DRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/DisplayCard/DMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Center/Modal/Margin/VBox/DisplayCard/DMargin/DRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Mode Tampilan Layar"
+
+[node name="FullscreenBtn" type="Button" parent="Center/Modal/Margin/VBox/DisplayCard/DMargin/DRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "[ ] Fullscreen"
+
+[node name="WindowedBtn" type="Button" parent="Center/Modal/Margin/VBox/DisplayCard/DMargin/DRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "[*] Windowed / Max"
+
+[node name="DataCard" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="DMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/DataCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="DRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/DataCard/DMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DataInfoLabel" type="Label" parent="Center/Modal/Margin/VBox/DataCard/DMargin/DRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.92, 0.86, 0.78, 1)
+theme_override_font_sizes/font_size = 12
+text = "Reset Data Save, Pilih Lantai & 8 Pencapaian"
+autowrap_mode = 3
+
+[node name="DeleteDataBtn" type="Button" parent="Center/Modal/Margin/VBox/DataCard/DMargin/DRow"]
+custom_minimum_size = Vector2(180, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.56, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "HAPUS SEMUA DATA"
+
+[node name="FooterRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="DevModeBtn" type="Button" parent="Center/Modal/Margin/VBox/FooterRow"]
+custom_minimum_size = Vector2(210, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BUKA DEVELOPER MODE [F12]"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/FooterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveCloseBtn" type="Button" parent="Center/Modal/Margin/VBox/FooterRow"]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "SIMPAN & TUTUP [Esc]"

@@ -1,0 +1,695 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/shop_ui.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://1vq2fnvxi0v0" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/Items.png" id="2_items"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.24, 0.29, 0.22, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.62, 0.7, 0.54, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.18, 0.22, 0.17, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.53, 0.4, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill"]
+bg_color = Color(0.36, 0.29, 0.14, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.95, 0.78, 0.32, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inset"]
+bg_color = Color(0.11, 0.13, 0.1, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.42, 0.32, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+atlas = ExtResource("2_items")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crystal"]
+atlas = ExtResource("2_items")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key"]
+atlas = ExtResource("2_items")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hint"]
+atlas = ExtResource("2_items")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp"]
+atlas = ExtResource("2_items")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sword"]
+atlas = ExtResource("2_items")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boots"]
+atlas = ExtResource("2_items")
+region = Rect2(160, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_potion"]
+atlas = ExtResource("2_items")
+region = Rect2(128, 16, 16, 16)
+
+[node name="ShopUI" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.04, 0.72)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modal" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(820, 495)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Center/Modal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderPanel" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="HMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="HRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CatPill" type="PanelContainer" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill")
+
+[node name="CatLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow/CatPill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "TOKO DUNGEON"
+
+[node name="TitleLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 14
+text = "Saudagar Tinkerer"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CoinIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="CrystalIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_crystal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CrystalLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="KeyIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_key")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="HintIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_hint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HintLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.84, 0.42, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="PotionIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_potion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotionLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.56, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="HPIcon" type="TextureRect" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_hp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HPLabel" type="Label" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.52, 0.56, 1)
+theme_override_font_sizes/font_size = 13
+text = "3/3"
+
+[node name="CloseBtn" type="Button" parent="Center/Modal/Margin/VBox/HeaderPanel/HMargin/HRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "TUTUP [Esc]"
+
+[node name="Grid" type="GridContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="SwordCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/Grid/SwordCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_sword")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pedang Kristal"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Upgrade permanen: damage pedang 1 -> 3 & ayunan lebih cepat."
+autowrap_mode = 3
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol"]
+layout_mode = 2
+
+[node name="PriceTag" type="Label" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "20 Koin · 1x"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyBtn" type="Button" parent="Center/Modal/Margin/VBox/Grid/SwordCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BELI (20 Koin)"
+
+[node name="BootsCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/Grid/BootsCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_boots")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.96, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sepatu Cepat"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Upgrade permanen: kecepatan gerak meningkat (120 -> 170)."
+autowrap_mode = 3
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol"]
+layout_mode = 2
+
+[node name="PriceTag" type="Label" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "15 Koin · 1x"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyBtn" type="Button" parent="Center/Modal/Margin/VBox/Grid/BootsCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BELI (15 Koin)"
+
+[node name="KeyCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/Grid/KeyCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_key")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 14
+text = "Kunci Ruang Rahasia"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Membuka 1 pintu ruang rahasia di Lantai 2 atau Lantai 3."
+autowrap_mode = 3
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol"]
+layout_mode = 2
+
+[node name="PriceTag" type="Label" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "10 Koin · Habis pakai"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyBtn" type="Button" parent="Center/Modal/Margin/VBox/Grid/KeyCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BELI (10 Koin)"
+
+[node name="HintCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/Grid/HintCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_hint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "Token Petunjuk SQL"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Menambah +1 token bantuan sintaks di Bengkel Query."
+autowrap_mode = 3
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol"]
+layout_mode = 2
+
+[node name="PriceTag" type="Label" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "5 Koin · Habis pakai"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyBtn" type="Button" parent="Center/Modal/Margin/VBox/Grid/HintCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BELI (5 Koin)"
+
+[node name="BottomRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PotionCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_potion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.56, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "Ramuan HP (+35 HP)"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "Disimpan di tas. Tekan [H] atau klik Ramuan di HUD kapan saja untuk +35 HP."
+autowrap_mode = 3
+
+[node name="ActionRow" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol"]
+layout_mode = 2
+
+[node name="PriceTag" type="Label" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "8 Koin · Pakai [H]"
+
+[node name="Spacer" type="Control" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyBtn" type="Button" parent="Center/Modal/Margin/VBox/BottomRow/PotionCard/Margin/Row/InfoCol/ActionRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "BELI (8 Koin)"
+
+[node name="ExchangeCard" type="PanelContainer" parent="Center/Modal/Margin/VBox/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Margin" type="MarginContainer" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconFrame" type="PanelContainer" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="Icon" type="TextureRect" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row/IconFrame"]
+texture_filter = 1
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_crystal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="NameLabel" type="Label" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row/InfoCol"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Tempa Kristal -> +10 Max HP & +2 Max Energi"
+
+[node name="DescLabel" type="Label" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row/InfoCol"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.84, 0.87, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "Tukar 3 Syntax Crystal untuk upgrade permanen +10 Max HP, +2 Max Energi SQL & isi penuh Energi."
+autowrap_mode = 3
+
+[node name="ExchangeBtn" type="Button" parent="Center/Modal/Margin/VBox/BottomRow/ExchangeCard/Margin/Row"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 12
+text = "TEMPA (3 Kristal)"
+
+[node name="StatusBanner" type="PanelContainer" parent="Center/Modal/Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inset")
+
+[node name="SMargin" type="MarginContainer" parent="Center/Modal/Margin/VBox/StatusBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 7
+
+[node name="StatusLabel" type="Label" parent="Center/Modal/Margin/VBox/StatusBanner/SMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 12
+text = "Selamat datang! Pilih perlengkapan atau tukar Syntax Crystal."

@@ -1,0 +1,341 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/exploration_hud.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://1vq2fnvxi0v0" path="res://assets/tilesets/Valley Ruin Asset Pack V0.3/Objects/Items.png" id="2_items"]
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="3_dobj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+bg_color = Color(0.29, 0.35, 0.26, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.7, 0.54, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.12, 0.1, 0.14, 0.55)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energy_bg"]
+bg_color = Color(0.19, 0.23, 0.18, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.56, 0.42, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_energy_fill"]
+bg_color = Color(0.24, 0.62, 0.92, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill"]
+bg_color = Color(0.9, 0.28, 0.34, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp"]
+atlas = ExtResource("2_items")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_energy"]
+atlas = ExtResource("2_items")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+atlas = ExtResource("2_items")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crystal"]
+atlas = ExtResource("2_items")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key"]
+atlas = ExtResource("2_items")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_potion"]
+atlas = ExtResource("2_items")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp"]
+atlas = ExtResource("2_items")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lever"]
+atlas = ExtResource("3_dobj")
+region = Rect2(80, 75, 16, 25)
+
+[node name="ExplorationHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = 46.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="Margin" type="MarginContainer" parent="TopBar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="Row" type="HBoxContainer" parent="TopBar/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="FloorLabel" type="Label" parent="TopBar/Margin/Row"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.72, 1)
+theme_override_font_sizes/font_size = 13
+text = "LANTAI 1"
+
+[node name="HPGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="HPIcon" type="TextureRect" parent="TopBar/Margin/Row/HPGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_hp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HPBar" type="ProgressBar" parent="TopBar/Margin/Row/HPGroup"]
+custom_minimum_size = Vector2(84, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_energy_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="TopBar/Margin/Row/HPGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.52, 0.56, 1)
+theme_override_font_sizes/font_size = 13
+text = "100/100"
+
+[node name="EnergyGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="EnergyIcon" type="TextureRect" parent="TopBar/Margin/Row/EnergyGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_energy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EnergyBar" type="ProgressBar" parent="TopBar/Margin/Row/EnergyGroup"]
+custom_minimum_size = Vector2(72, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_energy_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_energy_fill")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="EnergyLabel" type="Label" parent="TopBar/Margin/Row/EnergyGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "10/10"
+
+[node name="CoinGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="CoinIcon" type="TextureRect" parent="TopBar/Margin/Row/CoinGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinLabel" type="Label" parent="TopBar/Margin/Row/CoinGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="CrystalGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="CrystalIcon" type="TextureRect" parent="TopBar/Margin/Row/CrystalGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_crystal")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CrystalLabel" type="Label" parent="TopBar/Margin/Row/CrystalGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="KeyGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="KeyIcon" type="TextureRect" parent="TopBar/Margin/Row/KeyGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_key")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="TopBar/Margin/Row/KeyGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="PotionGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="PotionIcon" type="TextureRect" parent="TopBar/Margin/Row/PotionGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_potion")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotionLabel" type="Label" parent="TopBar/Margin/Row/PotionGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.56, 0.62, 1)
+theme_override_font_sizes/font_size = 13
+text = "0"
+
+[node name="UsePotionBtn" type="Button" parent="TopBar/Margin/Row/PotionGroup"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 11
+text = "PAKAI [H]"
+
+[node name="XPGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="XPIcon" type="TextureRect" parent="TopBar/Margin/Row/XPGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_xp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="XPLabel" type="Label" parent="TopBar/Margin/Row/XPGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 1, 0.68, 1)
+theme_override_font_sizes/font_size = 13
+text = "Trainee · 0 XP"
+
+[node name="Spacer" type="Control" parent="TopBar/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="LeverGroup" type="HBoxContainer" parent="TopBar/Margin/Row"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="LeverIcon" type="TextureRect" parent="TopBar/Margin/Row/LeverGroup"]
+texture_filter = 1
+custom_minimum_size = Vector2(14, 20)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lever")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeverLabel" type="Label" parent="TopBar/Margin/Row/LeverGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
+theme_override_font_sizes/font_size = 13
+text = "TUAS 0/2"
+
+[node name="ToastLabel" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -54.0
+offset_right = 200.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.984, 0.749, 0.141, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.05, 0.08, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1

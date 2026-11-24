@@ -1,10 +1,13 @@
 extends CharacterBody2D
-## Top-down player: 4-direction movement, sword attack, and interaction.
+## Top-down player: 4-direction movement, animated walk/attack, and interaction.
+## Animations live in res://resources/player_frames.tres (8 directions x walk/attack).
 
 const BASE_SPEED: float = 120.0
 const BOOTS_SPEED: float = 170.0 # ~ +40%
-const ATTACK_DURATION: float = 0.2
+const ATTACK_DURATION: float = 0.2 # 4 frames @ 20 fps
 const UPGRADED_ATTACK_DURATION: float = 0.14 # ASSUMPTION: upgraded sword swings faster
+const ATTACK_FRAMES: float = 4.0
+const ATTACK_BASE_FPS: float = 20.0
 const SWORD_OFFSET: float = 16.0
 const INTERACT_OFFSET: float = 20.0
 
@@ -12,6 +15,7 @@ var last_facing_direction: Vector2 = Vector2.DOWN
 var is_attacking: bool = false
 var _hit_this_swing: Array[Node] = []
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sword_hitbox: Area2D = $SwordHitbox
 @onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D
 @onready var interaction_area: Area2D = $InteractionArea
@@ -22,6 +26,7 @@ func _ready() -> void:
 	sword_shape.disabled = true
 	sword_hitbox.area_entered.connect(_on_sword_hit)
 	_update_aim_nodes()
+	_play_state_animation()
 
 
 func _physics_process(_delta: float) -> void:
@@ -30,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if input_dir != Vector2.ZERO:
 		_update_facing(input_dir)
+	_play_state_animation()
 
 
 # _unhandled_input means UI buttons (Bengkel Query, Shop) swallow clicks first.
@@ -60,6 +66,25 @@ func _update_aim_nodes() -> void:
 	interaction_area.position = last_facing_direction * INTERACT_OFFSET
 
 
+# ---------- Animation ----------
+func _dir_name() -> String:
+	if absf(last_facing_direction.x) > absf(last_facing_direction.y):
+		return "right" if last_facing_direction.x > 0.0 else "left"
+	return "down" if last_facing_direction.y > 0.0 else "up"
+
+
+func _play_clip(clip: String) -> void:
+	if sprite.animation != StringName(clip) or not sprite.is_playing():
+		sprite.play(clip)
+
+
+## Walk while moving, single-frame idle otherwise. Attack overrides both.
+func _play_state_animation() -> void:
+	if is_attacking:
+		return
+	_play_clip(("walk_" if velocity.length() > 1.0 else "idle_") + _dir_name())
+
+
 # ---------- Combat ----------
 func _get_sword_damage() -> int:
 	return 3 if GameManager.sword_upgraded else 1
@@ -71,9 +96,15 @@ func _attack() -> void:
 	_update_aim_nodes()
 	sword_shape.set_deferred("disabled", false)
 	var duration := UPGRADED_ATTACK_DURATION if GameManager.sword_upgraded else ATTACK_DURATION
+	sprite.play("attack_" + _dir_name())
+	# Keep the 6-frame swing in sync with the (speed-upgradable) hit window.
+	sprite.speed_scale = (ATTACK_FRAMES / duration) / ATTACK_BASE_FPS
 	await get_tree().create_timer(duration).timeout
 	sword_shape.set_deferred("disabled", true)
+	sprite.speed_scale = 1.0
 	is_attacking = false
+	_play_state_animation()
+
 
 
 ## Any Hurtbox (Area2D) whose parent has take_hit(damage) can be hit: boxes, guards, boss.

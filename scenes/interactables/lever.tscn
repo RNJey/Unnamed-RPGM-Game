@@ -1,47 +1,55 @@
-[gd_scene format=3 uid="uid://bxgica646bs0s"]
+[gd_scene load_steps=7 format=3 uid="uid://bxgica646bs0s"]
 
-[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="1_g73kl"]
+[ext_resource type="Script" uid="uid://crw63ty12sa7c" path="res://scripts/lever.gd" id="1_lever"]
+[ext_resource type="Texture2D" uid="uid://bxny44q8m6wwi" path="res://assets/tilesets/DampDungeons/Animations/Dungeon_ObjectsDungeon.png" id="2_tex"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kv8us"]
-atlas = ExtResource("1_g73kl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_unpulled"]
+atlas = ExtResource("2_tex")
 region = Rect2(64, 75, 16, 25)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cyoba"]
-atlas = ExtResource("1_g73kl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pulled"]
+atlas = ExtResource("2_tex")
 region = Rect2(80, 75, 16, 25)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tx22e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kv8us")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cyoba")
-}],
-"loop": 1,
-"name": &"lever",
-"speed": 5.0
-}]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lever"]
+radius = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tx22e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lever_body"]
+size = Vector2(12, 8)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7khga"]
-height = 24.0
+[node name="Lever" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_lever")
+pulled_texture = SubResource("AtlasTexture_pulled")
 
-[node name="Lever" type="StaticBody2D" unique_id=1727285350]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_unpulled")
+offset = Vector2(0, -10)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=157000215]
-position = Vector2(312, -10)
-sprite_frames = SubResource("SpriteFrames_tx22e")
-animation = &"lever"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lever")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1920619371]
+[node name="Body" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=352830795]
-position = Vector2(312, -11)
-shape = SubResource("CapsuleShape2D_tx22e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_lever_body")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=22994200]
-position = Vector2(312, -10)
-shape = SubResource("CapsuleShape2D_7khga")
+[node name="Status" type="Label" parent="."]
+visible = false
+texture_filter = 2
+offset_left = -240.0
+offset_top = -32.0
+offset_right = 240.0
+offset_bottom = 4.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(240, 0)
+theme_override_colors/font_color = Color(0.2, 0.83, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.07, 0.1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "[E] TARIK TUAS"
+horizontal_alignment = 1

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b07ou87g0ebyn"]
+
+[ext_resource type="Script" uid="uid://cb81cl1axvba8" path="res://dialogue_box.gd" id="1_xg44k"]
+
+[node name="DialogueBox" type="Control" unique_id=810661251]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xg44k")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2132772637]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 181.0
+offset_right = 1061.0
+offset_bottom = 313.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=327881164]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1775874698]
+layout_mode = 2
+
+[node name="DialogueLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1564770084]
+layout_mode = 2
+fit_content = true
+
+[node name="HintLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1850224271]
+layout_mode = 2
